@@ -5,10 +5,12 @@ A web-based chatbot application built with FastAPI that integrates with AWS Bedr
 ## Features
 
 - Clean, responsive web interface
+- User authentication and session management
 - Session-based conversation history
 - AWS Bedrock integration for AI responses
 - Secure environment variable configuration
 - XSS protection with HTML escaping
+- Comprehensive logging for monitoring and debugging
 
 ## Prerequisites
 
@@ -49,7 +51,11 @@ uvicorn main:app --reload
 
 2. Open your browser and navigate to `http://localhost:8000`
 
-3. Start chatting with the AI assistant
+3. Login with demo credentials:
+   - Username: `admin`, Password: `secret`
+   - Username: `user`, Password: `password`
+
+4. Start chatting with the AI assistant
 
 ## Configuration
 
@@ -79,8 +85,11 @@ ai-optimization/
 
 ## API Endpoints
 
-- `GET /` - Main chat interface
-- `POST /chat` - Handle chat message submission
+- `GET /login` - Login page
+- `POST /login` - Handle login form submission
+- `GET /logout` - Logout and clear session
+- `GET /` - Main chat interface (requires authentication)
+- `POST /chat` - Handle chat message submission (requires authentication)
 
 ## Security Features
 

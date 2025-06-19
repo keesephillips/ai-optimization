@@ -1,0 +1,75 @@
+2025-06-19 10:28:45,572 - main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:28:45,572 - main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:29:34,283 - main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:29:34,283 - main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:30:25,752 - main - INFO - User user logged in successfully
+2025-06-19 10:30:25,762 - main - INFO - Chat page accessed by user: user
+2025-06-19 10:30:36,725 - main - INFO - Processing user message: where is duke university?...
+2025-06-19 10:30:36,725 - main - INFO - Calling Bedrock API
+2025-06-19 10:30:47,801 - main - INFO - Received response from Bedrock: Here's a comprehensive analysis of the location of...
+2025-06-19 10:30:47,808 - main - INFO - Processing user message: where is duke university?...
+2025-06-19 10:30:47,808 - main - INFO - Calling Bedrock API
+2025-06-19 10:30:53,939 - main - INFO - Received response from Bedrock: I'll provide a comprehensive analysis about Duke U...
+2025-06-19 10:30:53,955 - main - INFO - Chat page accessed by user: user
+2025-06-19 10:33:15,960 - main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:33:15,960 - main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:33:16,758 - main - INFO - Processing user message: what is duke university known for?...
+2025-06-19 10:33:16,758 - main - INFO - Calling Bedrock API
+2025-06-19 10:33:24,499 - main - INFO - Received response from Bedrock: Here's a comprehensive analysis of Duke University...
+2025-06-19 10:33:24,509 - main - INFO - Chat page accessed by user: user
+2025-06-19 10:33:31,046 - main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:33:31,046 - main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:35:19,887 - main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:35:19,887 - main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:47:23,384 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:47:23,385 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:47:47,376 - app.main - INFO - User user logged in successfully
+2025-06-19 10:47:47,398 - app.main - INFO - Chat page accessed by user: user
+2025-06-19 10:48:16,079 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:48:16,079 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:48:19,379 - app.main - INFO - Chat page accessed by user: user
+2025-06-19 10:48:54,687 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:48:54,687 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:49:05,665 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:49:05,665 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:49:10,966 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:49:10,966 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:49:19,049 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:49:19,049 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:50:19,061 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:50:19,074 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:51:02,144 - app.main - INFO - User user logged out
+2025-06-19 10:51:30,317 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:51:30,317 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:52:04,955 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:52:04,955 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:52:39,837 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:52:39,838 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:56:59,767 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:56:59,767 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:57:06,085 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:57:06,085 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:57:51,495 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:57:51,495 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:58:01,365 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:58:01,367 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:58:47,591 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:58:47,591 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:59:33,848 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 10:59:33,848 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 10:59:48,774 - app.main - INFO - User user logged in successfully
+2025-06-19 10:59:48,792 - app.main - INFO - Chat page accessed by user: user
+2025-06-19 11:00:01,961 - app.main - INFO - Processing user message: what are the atlanta falcons?...
+2025-06-19 11:00:01,961 - app.main - INFO - Calling Bedrock API
+2025-06-19 11:00:10,806 - app.main - INFO - Received response from Bedrock: Here's a comprehensive analysis of the Atlanta Fal...
+2025-06-19 11:00:10,812 - app.main - INFO - Chat page accessed by user: user
+2025-06-19 11:00:26,801 - app.main - INFO - Processing user message: where are the atlanta falcons located?...
+2025-06-19 11:00:26,801 - app.main - INFO - Calling Bedrock API
+2025-06-19 11:00:32,763 - app.main - INFO - Received response from Bedrock: Here's a comprehensive analysis about the location...
+2025-06-19 11:00:32,785 - app.main - INFO - Chat page accessed by user: user
+2025-06-19 11:02:01,407 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 11:02:01,407 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 11:02:15,759 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 11:02:15,759 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+2025-06-19 11:02:19,879 - app.main - INFO - Initializing Bedrock client for region: us-east-2
+2025-06-19 11:02:19,880 - app.main - INFO - Using Bedrock prompt ARN: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM

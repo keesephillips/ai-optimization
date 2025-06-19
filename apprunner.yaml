@@ -1,0 +1,20 @@
+version: 1.0
+runtime: python3
+build:
+  commands:
+    build:
+      - pip install -r requirements.txt
+run:
+  runtime-version: 3.11
+  command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+  network:
+    port: 8000
+  env:
+    - name: AWS_REGION
+      value: us-east-2
+    - name: BEDROCK_ARN
+      value: arn:aws:bedrock:us-east-2:381492212823:prompt/QSG8T98UZM
+    - name: PROMPT_VAR_NAME
+      value: user_input
+    - name: SESSION_SECRET_KEY
+      value: 8200E54A64AF2F8FFB509F99AFE8CF4C

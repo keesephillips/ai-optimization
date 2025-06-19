@@ -87,7 +87,24 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>Chatbot via Amazon Bedrock</h1>
+			<div
+				style="
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 1rem;
+				"
+			>
+				<h1 style="margin: 0">AI Optimization Chatbot</h1>
+				<div>
+					<span>Welcome, {{ user }}!</span>
+					<a
+						href="/logout"
+						style="margin-left: 1rem; color: #007bff; text-decoration: none"
+						>Logout</a
+					>
+				</div>
+			</div>
 
 			<div class="conversation">{{ conversation | safe }}</div>
 
