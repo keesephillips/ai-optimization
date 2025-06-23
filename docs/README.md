@@ -114,6 +114,5 @@ Once running, visit:
 ## Support
 
 For issues and questions:
-1. Check the [troubleshooting guide](troubleshooting.md)
-2. Review the [testing documentation](testing.md)
-3. Check application logs in `app.log`
+1. Review the [testing documentation](testing.md)
+2. Check application logs in `app.log`
