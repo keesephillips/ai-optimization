@@ -56,8 +56,9 @@ async def chat_page(request: Request):
     conversation = request.session.get("conversation", [])
     html_conv = ""
     for msg in conversation:
-        role = "You" if msg["role"] == "user" else "Assistant"
-        html_conv += f'<div><b>{role}:</b> {html.escape(msg["text"])}</div><br>'
+        role_class = "user" if msg["role"] == "user" else "assistant"
+        escaped_text = html.escape(msg["text"])
+        html_conv += f'<div class="message {role_class}"><div class="message-content">{escaped_text}</div></div>'
     
     return templates.TemplateResponse("index.html", {
         "request": request, 
