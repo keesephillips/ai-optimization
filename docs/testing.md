@@ -4,20 +4,22 @@ This document explains how to run and understand the tests for the AI Enterprise
 
 ## Test Structure
 
-The test suite is organized into several test classes:
+The test suite covers:
 
-- **TestAuthentication**: Tests user authentication functions
-- **TestLoginEndpoints**: Tests login/logout HTTP endpoints  
-- **TestChatEndpoints**: Tests chat functionality and API endpoints
-- **TestConversationRendering**: Tests HTML conversation rendering
-- **TestSessionManagement**: Tests session-based conversation persistence
-- **TestEnvironmentConfiguration**: Tests configuration handling
+- **Authentication**: User login/registration functionality
+- **HTTP Endpoints**: All API routes and responses
+- **Chat Functionality**: Message processing and AI integration
+- **Session Management**: Conversation persistence
+- **Security**: XSS protection and input validation
 
 ## Running Tests
 
 ### Quick Start
 ```bash
-# Install test dependencies
+# Navigate to tests directory
+cd tests
+
+# Install test dependencies 
 pip install pytest pytest-asyncio httpx
 
 # Run all tests
@@ -35,7 +37,7 @@ python -m pytest test_main.py::TestAuthentication -v
 # Run specific test
 python -m pytest test_main.py::TestAuthentication::test_authenticate_user_valid_credentials -v
 
-# Run with coverage (if pytest-cov installed)
+# Run with coverage 
 python -m pytest test_main.py --cov=main --cov-report=html
 ```
 
@@ -43,29 +45,29 @@ python -m pytest test_main.py --cov=main --cov-report=html
 
 The test suite covers:
 
-✅ **Authentication System**
+**Authentication System**
 - Valid/invalid login credentials
 - Session management
 - Protected endpoint access
 
-✅ **HTTP Endpoints**
+**HTTP Endpoints**
 - Login page rendering
 - Chat page access control
 - Form submission handling
 - Redirect responses
 
-✅ **Chat Functionality**
+**Chat Functionality**
 - Message processing
 - Bedrock API integration (mocked)
 - Error handling
 - Empty message handling
 
-✅ **Conversation Management**
+**Conversation Management**
 - HTML rendering with XSS protection
 - Session persistence
 - Multi-turn conversations
 
-✅ **Security Features**
+**Security Features**
 - HTML escaping for XSS prevention
 - Authentication requirements
 - Session-based access control
@@ -98,7 +100,7 @@ Example test structure:
 ```python
 class TestNewFeature:
     def test_feature_success_case(self, client):
-        # Test the happy path
+        # Test success conditions
         pass
     
     def test_feature_error_handling(self, client):

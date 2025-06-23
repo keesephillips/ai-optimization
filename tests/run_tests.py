@@ -26,7 +26,7 @@ def run_tests():
     
     try:
         result = subprocess.run(cmd, check=True)
-        print("\n✅ All tests passed!")
+        print("\nAll tests passed!")
         return 0
     except subprocess.CalledProcessError as e:
         print(f"\n❌ Tests failed with exit code {e.returncode}")

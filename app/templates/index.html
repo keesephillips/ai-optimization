@@ -10,21 +10,21 @@
 					Helvetica, Arial, sans-serif;
 				margin: 0;
 				padding: 0 1rem 5rem 1rem;
-				background-color: #f4f4f9;
-				color: #333;
+				background-color: #1a1a1a;
+				color: #e0e0e0;
 			}
 			.container {
 				max-width: 800px;
 				margin: 2rem auto;
 				padding: 2rem;
-				background-color: #fff;
+				background-color: #2d2d2d;
 				border-radius: 8px;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 			}
 			h1 {
-				color: #1a1a1a;
+				color: #ffffff;
 				text-align: center;
-				border-bottom: 2px solid #e0e0e0;
+				border-bottom: 2px solid #444;
 				padding-bottom: 0.5rem;
 				margin-bottom: 2rem;
 			}
@@ -35,15 +35,17 @@
 			}
 			input[type="text"] {
 				flex-grow: 1;
-				border: 1px solid #ccc;
+				border: 1px solid #555;
 				padding: 0.75rem;
 				border-radius: 6px;
 				font-size: 1rem;
+				background-color: #3a3a3a;
+				color: #e0e0e0;
 			}
 			button[type="submit"] {
 				padding: 0.75rem 1.5rem;
 				border: none;
-				background-color: #007bff;
+				background-color: #0d7377;
 				color: white;
 				border-radius: 6px;
 				font-size: 1rem;
@@ -51,7 +53,7 @@
 				transition: background-color 0.2s;
 			}
 			button[type="submit"]:hover {
-				background-color: #0056b3;
+				background-color: #14a085;
 			}
 			.conversation {
 				margin-top: 2rem;
@@ -64,11 +66,11 @@
 			}
 			.user {
 				font-weight: bold;
-				color: #0056b3;
+				color: #4fc3f7;
 			}
 			.assistant {
 				font-weight: bold;
-				color: #28a745;
+				color: #81c784;
 			}
 			.msg .user,
 			.msg .assistant {
@@ -76,12 +78,12 @@
 				margin-bottom: 0.25rem;
 			}
 			.msg-user {
-				background-color: #e7f3ff;
-				border-left: 4px solid #007bff;
+				background-color: #1e3a5f;
+				border-left: 4px solid #4fc3f7;
 			}
 			.msg-assistant {
-				background-color: #eafaf1;
-				border-left: 4px solid #28a745;
+				background-color: #1e4d2b;
+				border-left: 4px solid #81c784;
 			}
 		</style>
 	</head>
@@ -100,7 +102,7 @@
 					<span>Welcome, {{ user }}!</span>
 					<a
 						href="/logout"
-						style="margin-left: 1rem; color: #007bff; text-decoration: none"
+						style="margin-left: 1rem; color: #4fc3f7; text-decoration: none"
 						>Logout</a
 					>
 				</div>

@@ -1,344 +1,107 @@
 # Deployment Guide
 
-## Overview
+## Production Deployment with AWS App Runner
 
-This guide covers different deployment strategies for the AI Enterprise Chatbot application.
+This application is designed for production deployment using AWS App Runner, which provides a fully managed container application service.
 
-## Local Development
+## Prerequisites
 
-### Prerequisites
-- Python 3.11+
-- AWS Account with Bedrock access
-- Git
+- AWS Account with appropriate permissions
+- AWS CLI configured
+- GitHub repository with the application code
 
-### Setup Steps
+## Deployment Steps
+
+### 1. Configure Environment Variables
+
+Set up the following environment variables in AWS App Runner:
+
 ```bash
-# Clone repository
-git clone <repository-url>
-cd ai-optimization
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate     # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your settings
-
-# Run application
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=your-access-key-id
+AWS_SECRET_ACCESS_KEY=your-secret-access-key
 ```
 
-## Production Deployment
+### 2. App Runner Configuration
 
-### Docker Deployment
+The application includes an `apprunner.yaml` file that defines the build and runtime configuration:
 
-#### Dockerfile
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
-COPY . .
-
-# Create non-root user
-RUN useradd --create-home --shell /bin/bash app
-RUN chown -R app:app /app
-USER app
-
-# Expose port
-EXPOSE 8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
-
-# Run application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-#### Docker Compose
 ```yaml
-version: '3.8'
-
-services:
-  chatbot:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - AWS_REGION=${AWS_REGION}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - BEDROCK_ARN=${BEDROCK_ARN}
-      - SESSION_SECRET_KEY=${SESSION_SECRET_KEY}
-    volumes:
-      - ./logs:/app/logs
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./ssl:/etc/nginx/ssl
-    depends_on:
-      - chatbot
-    restart: unless-stopped
+version: 1.0
+runtime: python3
+build:
+  commands:
+    build:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+run:
+  runtime-version: 3.11
+  command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+  network:
+    port: 8000
+    env: PORT
+  env:
+    - name: PORT
+      value: "8000"
 ```
 
-### AWS ECS Deployment
+### 3. Deploy to App Runner
 
-#### Task Definition
-```json
-{
-  "family": "ai-chatbot",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "256",
-  "memory": "512",
-  "executionRoleArn": "arn:aws:iam::account:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::account:role/ecsTaskRole",
-  "containerDefinitions": [
-    {
-      "name": "chatbot",
-      "image": "your-account.dkr.ecr.region.amazonaws.com/ai-chatbot:latest",
-      "portMappings": [
-        {
-          "containerPort": 8000,
-          "protocol": "tcp"
-        }
-      ],
-      "environment": [
-        {
-          "name": "AWS_REGION",
-          "value": "us-east-2"
-        }
-      ],
-      "secrets": [
-        {
-          "name": "AWS_ACCESS_KEY_ID",
-          "valueFrom": "arn:aws:secretsmanager:region:account:secret:chatbot/aws-credentials"
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/ai-chatbot",
-          "awslogs-region": "us-east-2",
-          "awslogs-stream-prefix": "ecs"
-        }
+#### Option A: AWS Console
+1. Navigate to AWS App Runner in the AWS Console
+2. Click "Create service"
+3. Choose "Source code repository"
+4. Connect your GitHub repository
+5. Select the branch to deploy
+6. App Runner will automatically detect the `apprunner.yaml` configuration
+7. Add environment variables in the configuration step
+8. Review and create the service
+
+#### Option B: AWS CLI
+```bash
+# Create App Runner service
+aws apprunner create-service \
+  --service-name ai-chatbot \
+  --source-configuration '{
+    "CodeRepository": {
+      "RepositoryUrl": "https://github.com/keesephillips/ai-optimization",
+      "SourceCodeVersion": {
+        "Type": "BRANCH",
+        "Value": "main"
+      },
+      "CodeConfiguration": {
+        "ConfigurationSource": "REPOSITORY"
       }
-    }
-  ]
-}
+    },
+    "AutoDeploymentsEnabled": true
+  }'
 ```
 
-### Kubernetes Deployment
+## Features
 
-#### Deployment YAML
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ai-chatbot
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: ai-chatbot
-  template:
-    metadata:
-      labels:
-        app: ai-chatbot
-    spec:
-      containers:
-      - name: chatbot
-        image: ai-chatbot:latest
-        ports:
-        - containerPort: 8000
-        env:
-        - name: AWS_REGION
-          value: "us-east-2"
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: aws-credentials
-              key: access-key-id
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: aws-credentials
-              key: secret-access-key
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8000
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ai-chatbot-service
-spec:
-  selector:
-    app: ai-chatbot
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8000
-  type: LoadBalancer
-```
+- **Automatic Scaling**: App Runner automatically scales based on traffic
+- **Load Balancing**: Built-in load balancing and health checks
+- **HTTPS**: Automatic HTTPS certificate provisioning
+- **Monitoring**: Integrated with CloudWatch for logs and metrics
+- **Auto-deployment**: Automatic deployments on code changes
 
-## Environment Configuration
+## Monitoring
 
-### Production Environment Variables
-```bash
-# AWS Configuration
-AWS_REGION=us-east-2
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-BEDROCK_ARN=your-bedrock-model-arn
+App Runner provides built-in monitoring through CloudWatch:
 
-# Application Configuration
-SESSION_SECRET_KEY=your-secure-random-key
-LOG_LEVEL=INFO
-ENVIRONMENT=production
+- **Application Logs**: Available in CloudWatch Logs
+- **Metrics**: CPU, memory, and request metrics
+- **Health Checks**: Automatic health monitoring
 
-# Security Configuration
-ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
-CORS_ORIGINS=https://yourdomain.com
-```
+## Security
 
-### Security Considerations
+- **Environment Variables**: Securely stored and encrypted
+- **VPC Support**: Optional VPC connectivity
+- **IAM Integration**: Fine-grained access control
+- **HTTPS**: Automatic SSL/TLS termination
 
-#### SSL/TLS Configuration
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name yourdomain.com;
-    
-    ssl_certificate /etc/nginx/ssl/cert.pem;
-    ssl_certificate_key /etc/nginx/ssl/key.pem;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512;
-    
-    location / {
-        proxy_pass http://chatbot:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
+## Cost Optimization
 
-## Monitoring and Logging
-
-### Application Monitoring
-```python
-# Add to main.py for production
-import prometheus_client
-from prometheus_client import Counter, Histogram
-
-REQUEST_COUNT = Counter('requests_total', 'Total requests', ['method', 'endpoint'])
-REQUEST_LATENCY = Histogram('request_duration_seconds', 'Request latency')
-
-@app.middleware("http")
-async def monitor_requests(request: Request, call_next):
-    start_time = time.time()
-    response = await call_next(request)
-    REQUEST_COUNT.labels(method=request.method, endpoint=request.url.path).inc()
-    REQUEST_LATENCY.observe(time.time() - start_time)
-    return response
-```
-
-### Log Aggregation
-```yaml
-# docker-compose.yml addition
-  fluentd:
-    image: fluent/fluentd:v1.14-debian-1
-    volumes:
-      - ./fluentd/conf:/fluentd/etc
-      - ./logs:/var/log
-    ports:
-      - "24224:24224"
-```
-
-## Scaling Strategies
-
-### Horizontal Scaling
-- Load balancer configuration
-- Session storage externalization (Redis)
-- Database connection pooling
-
-### Auto-scaling Configuration
-```yaml
-# Kubernetes HPA
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: ai-chatbot-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: ai-chatbot
-  minReplicas: 2
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-```
-
-## Backup and Recovery
-
-### Data Backup Strategy
-- Session data externalization
-- Configuration backup
-- Application logs archival
-
-### Disaster Recovery
-- Multi-region deployment
-- Database replication
-- Automated failover procedures
+- **Pay-per-use**: Only pay for compute time used
+- **Automatic Scaling**: Scales to zero when not in use
+- **No Infrastructure Management**: No EC2 instances to manage
