@@ -163,9 +163,3 @@ CREATE TABLE conversations (
 - API calls and responses
 - Error conditions
 - Performance metrics
-
-### Recommended Additions
-- Application metrics (Prometheus)
-- Distributed tracing
-- Health check endpoints
-- Performance monitoring

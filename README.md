@@ -107,6 +107,9 @@ Key dependencies include:
 - **python-dotenv** - Environment variable management
 - **Starlette** - Session middleware
 
+## AI Use Disclaimer
+This project used Amazon Q to help create the tests and documentations
+
 ## Author 
 
 Keese Phillips
