@@ -8,12 +8,12 @@ This application provides a web-based chat interface that integrates with AWS Be
 
 ## Features
 
-- 🔐 **Secure Authentication** - Session-based login system
-- 💬 **AI-Powered Chat** - Integration with AWS Bedrock
-- 🛡️ **XSS Protection** - HTML escaping for user inputs
-- 📝 **Conversation History** - Session-based chat persistence
-- 🚀 **FastAPI Backend** - Modern, fast web framework
-- 📊 **Comprehensive Logging** - Application monitoring and debugging
+- **Secure Authentication** - Session-based login system
+- **AI-Powered Chat** - Integration with AWS Bedrock
+- **XSS Protection** - HTML escaping for user inputs
+- **Conversation History** - Session-based chat persistence
+- **FastAPI Backend** - Modern, fast web framework
+- **Comprehensive Logging** - Application monitoring and debugging
 
 ## Architecture
 
@@ -105,16 +105,6 @@ python -m pytest test_main.py -v
 - Configure proper logging and monitoring
 - Use environment-specific configuration
 
-### Docker Deployment
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
 ## API Documentation
 
 Once running, visit:
@@ -127,7 +117,3 @@ For issues and questions:
 1. Check the [troubleshooting guide](troubleshooting.md)
 2. Review the [testing documentation](testing.md)
 3. Check application logs in `app.log`
-
-## License
-
-This project is for educational and enterprise use.

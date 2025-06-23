@@ -18,8 +18,8 @@ Set up the following environment variables in AWS App Runner:
 
 ```bash
 AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=your-access-key-id
-AWS_SECRET_ACCESS_KEY=your-secret-access-key
+AWS_ACCESS_KEY_ID=access-key-id
+AWS_SECRET_ACCESS_KEY=secret-access-key
 ```
 
 ### 2. App Runner Configuration

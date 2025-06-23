@@ -1,13 +1,13 @@
 # AI Chatbot
 
-A modern web-based chatbot application built with FastAPI that integrates with AWS Bedrock Claude 3 Haiku for AI-powered conversations.
+A modern web-based chatbot application built with FastAPI that integrates with AWS Bedrock for AI-powered conversations.
 
 ## Features
 
 - **Dark Mode Interface** - Modern, responsive dark theme
 - **User Authentication** - Login and registration system
 - **Session Management** - Persistent conversation history
-- **AWS Bedrock Integration** - Claude 3 Haiku AI responses
+- **AWS Bedrock Integration** - Bedrock AI responses
 - **Security** - XSS protection with HTML escaping
 - **Real-time Chat** - Instant AI responses
 
@@ -106,13 +106,6 @@ Key dependencies include:
 - **Jinja2** - Template engine
 - **python-dotenv** - Environment variable management
 - **Starlette** - Session middleware
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
 
 ## Author 
 

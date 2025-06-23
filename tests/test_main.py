@@ -4,6 +4,7 @@ from unittest.mock import Mock, patch
 from fastapi.testclient import TestClient
 import sys
 import os
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from app.main import app, authenticate_user, render_conversation, get_current_user
 from fastapi import HTTPException, Request
@@ -80,7 +81,7 @@ class TestLoginEndpoints:
     def test_login_post_valid_credentials(self, client):
         """Test POST login with valid credentials."""
         response = client.post("/login", data={"username": "admin", "password": "secret"})
-        assert response.status_code == 200  # RedirectResponse returns 200 in test client
+        assert response.status_code == 200  
         assert response.url.path == "/"
     
     def test_login_post_invalid_credentials(self, client):
@@ -91,10 +92,8 @@ class TestLoginEndpoints:
     
     def test_logout(self, client):
         """Test logout functionality."""
-        # First login
         client.post("/login", data={"username": "admin", "password": "secret"})
         
-        # Then logout
         response = client.get("/logout")
         assert response.status_code == 200
         assert response.url.path == "/login"
@@ -105,7 +104,6 @@ class TestChatEndpoints:
     
     def test_chat_page_authenticated(self, client):
         """Test accessing chat page when authenticated."""
-        # Login first
         client.post("/login", data={"username": "admin", "password": "secret"})
         
         response = client.get("/")
@@ -119,14 +117,12 @@ class TestChatEndpoints:
     
     def test_chat_message_post_authenticated(self, client, mock_bedrock):
         """Test posting a chat message when authenticated."""
-        # Login first
         client.post("/login", data={"username": "admin", "password": "secret"})
         
         response = client.post("/chat", data={"message": "Hello, chatbot!"})
         assert response.status_code == 200
         assert response.url.path == "/"
         
-        # Verify Bedrock was called
         mock_bedrock.converse.assert_called_once()
     
     def test_chat_message_post_unauthenticated(self, client):
@@ -136,19 +132,16 @@ class TestChatEndpoints:
     
     def test_chat_message_empty(self, client, mock_bedrock):
         """Test posting an empty chat message."""
-        # Login first
         client.post("/login", data={"username": "admin", "password": "secret"})
         
-        response = client.post("/chat", data={"message": "   "})  # Empty/whitespace message
+        response = client.post("/chat", data={"message": "   "})  
         assert response.status_code == 200
         assert response.url.path == "/"
         
-        # Verify Bedrock was NOT called for empty message
         mock_bedrock.converse.assert_not_called()
     
     def test_chat_bedrock_error_handling(self, client):
         """Test chat functionality when Bedrock API fails."""
-        # Login first
         client.post("/login", data={"username": "admin", "password": "secret"})
         
         with patch('app.main.bedrock') as mock_bedrock:
@@ -215,19 +208,14 @@ class TestSessionManagement:
     
     def test_conversation_persistence_across_requests(self, client, mock_bedrock):
         """Test that conversation history persists across requests."""
-        # Login first
         client.post("/login", data={"username": "admin", "password": "secret"})
         
-        # Send first message
         client.post("/chat", data={"message": "First message"})
         
-        # Send second message
         client.post("/chat", data={"message": "Second message"})
         
-        # Verify Bedrock was called twice
         assert mock_bedrock.converse.call_count == 2
         
-        # Get the chat page to verify conversation history
         response = client.get("/")
         assert response.status_code == 200
         assert "First message" in response.text
@@ -241,7 +229,6 @@ class TestEnvironmentConfiguration:
         """Test that default values are used when environment variables are not set."""
         from app.main import REGION, SESSION_SECRET_KEY
         
-        # These should have default values even if not in environment
         assert REGION is not None
         assert SESSION_SECRET_KEY is not None
 
