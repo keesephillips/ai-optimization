@@ -1,4 +1,4 @@
-# AI Enterprise Chatbot
+# AI Chatbot
 
 A modern web-based chatbot application built with FastAPI that integrates with AWS Bedrock Claude 3 Haiku for AI-powered conversations.
 

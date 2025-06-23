@@ -2,7 +2,7 @@
 
 ## System Overview
 
-The AI Enterprise Chatbot is built using a modern web architecture with clear separation of concerns.
+The AI Chatbot is built using a modern web architecture with clear separation of concerns.
 
 ## Components
 

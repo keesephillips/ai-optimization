@@ -1,4 +1,4 @@
-# AI Enterprise Chatbot
+# AI Chatbot
 
 A secure, enterprise-ready chatbot application built with FastAPI and AWS Bedrock.
 
@@ -54,13 +54,13 @@ ai-optimization/
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `AWS_REGION` | AWS region for Bedrock | us-east-2 |
-| `AWS_ACCESS_KEY_ID` | AWS access key | Required |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key | Required |
-| `BEDROCK_ARN` | Bedrock model ARN | Default ARN |
-| `SESSION_SECRET_KEY` | Session encryption key | Generated |
+| Variable                | Description            | Default     |
+| ----------------------- | ---------------------- | ----------- |
+| `AWS_REGION`            | AWS region for Bedrock | us-east-2   |
+| `AWS_ACCESS_KEY_ID`     | AWS access key         | Required    |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret key         | Required    |
+| `BEDROCK_ARN`           | Bedrock model ARN      | Default ARN |
+| `SESSION_SECRET_KEY`    | Session encryption key | Generated   |
 
 ### AWS Bedrock Setup
 

@@ -1,6 +1,6 @@
 # Testing Guide
 
-This document explains how to run and understand the tests for the AI Enterprise Chatbot application.
+This document explains how to run and understand the tests for the AI Chatbot application.
 
 ## Test Structure
 
@@ -19,7 +19,7 @@ The test suite covers:
 # Navigate to tests directory
 cd tests
 
-# Install test dependencies 
+# Install test dependencies
 pip install pytest pytest-asyncio httpx
 
 # Run all tests
@@ -37,7 +37,7 @@ python -m pytest test_main.py::TestAuthentication -v
 # Run specific test
 python -m pytest test_main.py::TestAuthentication::test_authenticate_user_valid_credentials -v
 
-# Run with coverage 
+# Run with coverage
 python -m pytest test_main.py --cov=main --cov-report=html
 ```
 
