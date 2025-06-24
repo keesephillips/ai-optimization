@@ -107,6 +107,10 @@ Key dependencies include:
 - **python-dotenv** - Environment variable management
 - **Starlette** - Session middleware
 
+## Demo
+[Chatbot URL](http://68.109.107.206/)
+[Demo Video](https://youtu.be/pog-m3C5DcI)
+
 ## AI Use Disclaimer
 This project used Amazon Q to help create the tests and documentations
 
