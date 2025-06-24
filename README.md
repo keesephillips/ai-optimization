@@ -21,7 +21,7 @@ A modern web-based chatbot application built with FastAPI that integrates with A
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/keesephillips/ai-optimization
+git clone https://github.com/keesephillips/ai-operational
 cd ai-optimization
 ```
 
